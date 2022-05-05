@@ -1,0 +1,42 @@
+micronaut:
+  application:
+    name: hello
+  security:
+    authentication: idtoken
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: ${JWT_GENERATOR_SIGNATURE_SECRET}
+    oauth2:
+      clients:
+        micronaut:
+          client-id: ${OAUTH_CLIENT_ID}
+          client-secret: ${OAUTH_CLIENT_SECRET}
+          openid:
+            issuer: ${OAUTH_ISSUER}
+
+datasources:
+  default:
+    username: ${ATP_USER_USERNAME}
+    password: ${ATP_USER_PASSWORD}
+    ocid: ${ATP_OCID}
+    walletPassword: ${ATP_WALLET_PASSWORD}
+    dialect: ORACLE
+
+#oci:
+#  config:
+#    profile: DEFAULT
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+netty:
+  default:
+    allocator:
+      max-order: 3
+
+hello:
+  bucket-compartment-ocid: ${BUCKET_COMPARTMENT_OCID}

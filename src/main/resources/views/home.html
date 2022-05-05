@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>Hello World</title>
+</head>
+
+<body>
+
+<h1>Hello World</h1>
+
+<h2 th:if="${security}">Username: <span th:text="${security.get('name')}"></span></h2>
+<h2 th:unless="${security}">Not logged in</h2>
+
+<nav>
+    <ul>
+        <li th:unless="${security}"><a href="/oauth/login/micronaut">Login</a></li>
+        <li th:if="${security}"><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<div th:if="${security}">
+    <h2>User Information:</h2>
+    <h3>Hello <span th:text="${fullname}"></span>!</h3>
+    <h3>Message for you: <span th:text="${message}"></span></h3>
+    <img src="/image">
+</div>
+
+</body>
+</html>
