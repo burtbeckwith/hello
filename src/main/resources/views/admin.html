@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>Hello World Admin</title>
+</head>
+
+<body>
+
+<h1>Hello World Admin</h1>
+
+Create new user: <br/>
+
+<form action="/admin/createUser" method="post" enctype="multipart/form-data">
+
+    <label for="image">Image: </label>
+    <input type="file" name="image" id="image">
+    <br/>
+
+    <label for="email">Email: </label>
+    <input type="text" name="email" id="email">
+    <br/>
+
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username">
+    <br/>
+
+    <label for="firstName">First name: </label>
+    <input type="text" name="firstName" id="firstName">
+    <br/>
+
+    <label for="lastName">Last name: </label>
+    <input type="text" name="lastName" id="lastName">
+    <br/>
+
+    <label for="message">Message: </label>
+    <input type="text" name="message" id="message">
+    <br/>
+
+    <input type="submit" value="Create" id="submit" />
+
+</form>
+
+</body>
+</html>

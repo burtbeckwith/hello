@@ -86,17 +86,21 @@ public class ObjectService {
 
             byte[] bytes = inputStream.readAllBytes();
 
-            objectStorage.putObject(PutObjectRequest.builder()
-                    .namespaceName(namespaceName)
-                    .bucketName(IMAGES)
-                    .objectName(username)
-                    .contentLength((long) bytes.length)
-                    .putObjectBody(new ByteArrayInputStream(bytes))
-                    .build()
-            );
+            storeImage(bytes, username);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void storeImage(byte[] image, String username) {
+        objectStorage.putObject(PutObjectRequest.builder()
+                .namespaceName(namespaceName)
+                .bucketName(IMAGES)
+                .objectName(username)
+                .contentLength((long) image.length)
+                .putObjectBody(new ByteArrayInputStream(image))
+                .build()
+        );
     }
 
     public byte[] getImage(String username) {
