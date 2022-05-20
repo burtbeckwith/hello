@@ -1,19 +1,26 @@
 package com.oracle.hello.data;
 
+import com.oracle.hello.HelloException;
 import com.oracle.hello.os.ObjectService;
 import com.oracle.hello.rest.AccessToken;
 import com.oracle.hello.rest.User;
 import com.oracle.hello.rest.UserRestClient;
 import io.micronaut.context.annotation.Property;
+import io.micronaut.http.client.exceptions.HttpClientResponseException;
 import jakarta.inject.Singleton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.transaction.Transactional;
 import java.util.Base64;
 
+import static io.micronaut.http.HttpStatus.CONFLICT;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Singleton
 public class UserService {
+
+    private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private static final String TOKEN_BODY = "grant_type=client_credentials&scope=urn:opc:idm:__myscopes__";
 
@@ -42,7 +49,16 @@ public class UserService {
 
     private void createOAuthUser(User user) {
         AccessToken accessToken = userRestClient.accessToken(TOKEN_BODY, authHeader);
-        userRestClient.createUser(user, "Bearer " + accessToken.getToken());
+        try {
+            userRestClient.createUser(user, "Bearer " + accessToken.getToken());
+        } catch (HttpClientResponseException e) {
+            if (e.getResponse().getStatus() == CONFLICT) {
+                throw new HelloException("User " + user.getUserName() + " exists");
+            } else {
+                logger.error("Error creating user: {}", e.getResponse().getBody(String.class));
+                throw e;
+            }
+        }
     }
 
     private void createDatabaseMessage(User user, String message) {
