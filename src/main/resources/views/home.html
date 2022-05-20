@@ -2,29 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
-    <title>Hello World</title>
+    <title>Hello World Micronaut App- Uses Identity, Object Storage, and Autonomous Database </title>
 </head>
 
 <body>
 
-<h1>Hello World</h1>
+<h1>Hello World Micronaut App- Uses Identity, Object Storage, and Autonomous Database </h1>
+<h2><b><u>User Information</u></b></h2>
 
-<h2 th:if="${security}">Username: <span th:text="${security.get('name')}"></span></h2>
+<h2 th:if="${security}">Identity Name: <span style="text-transform:uppercase" th:text="${security.get('name')}"></span></h2>
 <h2 th:unless="${security}">Not logged in</h2>
 
+<div th:if="${security}" style="margin-left: 40px">
+    <h3>User Email: <span th:text="${security.get('name')}"></span></h3>
+    <h3>Full Name: <span style="text-transform:uppercase" th:text="${displayname}"></span></h3>
+    <h3>Message for you: <span th:text="${message}"></span></h3>
+    <img src="/image">
+</div>
 <nav>
     <ul>
         <li th:unless="${security}"><a href="/oauth/login/micronaut">Login</a></li>
         <li th:if="${security}"><a href="/logout">Logout</a></li>
     </ul>
 </nav>
-
-<div th:if="${security}">
-    <h2>User Information:</h2>
-    <h3>Hello <span th:text="${fullname}"></span>!</h3>
-    <h3>Message for you: <span th:text="${message}"></span></h3>
-    <img src="/image">
-</div>
 
 </body>
 </html>

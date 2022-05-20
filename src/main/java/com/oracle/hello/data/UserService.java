@@ -46,7 +46,7 @@ public class UserService {
     }
 
     private void createDatabaseMessage(User user, String message) {
-        personRepository.save(new Person(user.getUserName(), message));
+        personRepository.save(new PersonMessage(user.getUserName(), message));
     }
 
     private void uploadImage(User user, byte[] image) {

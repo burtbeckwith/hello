@@ -38,7 +38,7 @@ class HelloController {
         Map<String, Object> model = new HashMap<>();
 
         if (authentication != null) {
-            model.put("fullname", authentication.getAttributes().get("user_displayname"));
+            model.put("displayname", authentication.getAttributes().get("user_displayname"));
             model.put("message", personRepository.findByUsername(authentication.getName()).get().getMessage());
         }
 

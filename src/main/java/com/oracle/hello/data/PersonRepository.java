@@ -8,7 +8,7 @@ import java.util.Optional;
 import static io.micronaut.data.model.query.builder.sql.Dialect.ORACLE;
 
 @JdbcRepository(dialect = ORACLE)
-public interface PersonRepository extends CrudRepository<Person, Long> {
+public interface PersonRepository extends CrudRepository<PersonMessage, Long> {
 
-    Optional<Person> findByUsername(String username);
+    Optional<PersonMessage> findByUsername(String username);
 }

@@ -16,6 +16,10 @@ micronaut:
           client-secret: ${OAUTH_CLIENT_SECRET}
           openid:
             issuer: ${OAUTH_ISSUER}
+    endpoints:
+      logout:
+        enabled: true
+        get-allowed: true
 
 datasources:
   default:

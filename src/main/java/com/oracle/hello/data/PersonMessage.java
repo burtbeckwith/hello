@@ -4,8 +4,8 @@ import io.micronaut.data.annotation.GeneratedValue;
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
 
-@MappedEntity
-public class Person {
+@MappedEntity("PERSONMESSAGE")
+public class PersonMessage {
 
     @Id
     @GeneratedValue
@@ -14,7 +14,7 @@ public class Person {
     private final String username;
     private final String message;
 
-    public Person(String username, String message) {
+    public PersonMessage(String username, String message) {
         this.username = username;
         this.message = message;
     }

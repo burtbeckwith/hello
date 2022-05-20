@@ -32,8 +32,8 @@ class DataPopulator {
     @Transactional
     void createDatabasePersons() {
         if (personRepository.count() == 0) {
-            personRepository.save(new Person("aloksinha", "Alok Sinha custom message"));
-            personRepository.save(new Person("ericsedlar", "Eric Sedlar custom message"));
+            personRepository.save(new PersonMessage("aloksinha", "Alok Sinha custom message"));
+            personRepository.save(new PersonMessage("ericsedlar", "Eric Sedlar custom message"));
         }
     }
 

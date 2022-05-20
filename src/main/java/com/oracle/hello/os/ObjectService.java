@@ -20,7 +20,7 @@ import java.io.InputStream;
 @Singleton
 public class ObjectService {
 
-    private static final String IMAGES = "images";
+    private static final String IMAGES = "gcn01_images";
 
     private final ObjectStorage objectStorage;
     private final ResourceResolver resourceResolver;
